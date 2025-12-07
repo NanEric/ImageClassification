@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		07B96CB42EE53DDB00D7A54E /* MobileNetV2.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 07B96CB32EE53DDB00D7A54E /* MobileNetV2.mlmodel */; };
 		07B96CB72EE53EE200D7A54E /* CoreML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B96CB62EE53EE200D7A54E /* CoreML.framework */; };
+		07B96CCF2EE54C5B00D7A54E /* Vision.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B96CCE2EE54C5B00D7A54E /* Vision.framework */; };
+		07B96CD42EE54C7D00D7A54E /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B96CD32EE54C7D00D7A54E /* AVFoundation.framework */; };
+		07B96CD72EE54D3800D7A54E /* MobileNetV2.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B96CD62EE54D3800D7A54E /* MobileNetV2.m */; };
+		07B96CDB2EE5500500D7A54E /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07B96CDA2EE5500500D7A54E /* CoreVideo.framework */; };
+		07B96CDC2EE5509800D7A54E /* MobileNetV2.m in Sources */ = {isa = PBXBuildFile; fileRef = 07B96CD62EE54D3800D7A54E /* MobileNetV2.m */; };
+		07B96CDD2EE5513E00D7A54E /* MobileNetV2.mlmodel in Resources */ = {isa = PBXBuildFile; fileRef = 07B96CB32EE53DDB00D7A54E /* MobileNetV2.mlmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +40,12 @@
 		07B96C9F2EE53D1500D7A54E /* ImageClassificationUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ImageClassificationUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		07B96CB32EE53DDB00D7A54E /* MobileNetV2.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = MobileNetV2.mlmodel; sourceTree = "<group>"; };
 		07B96CB62EE53EE200D7A54E /* CoreML.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreML.framework; path = System/Library/Frameworks/CoreML.framework; sourceTree = SDKROOT; };
+		07B96CCE2EE54C5B00D7A54E /* Vision.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Vision.framework; path = System/Library/Frameworks/Vision.framework; sourceTree = SDKROOT; };
+		07B96CD32EE54C7D00D7A54E /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		07B96CD52EE54D3800D7A54E /* MobileNetV2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MobileNetV2.h; sourceTree = "<group>"; };
+		07B96CD62EE54D3800D7A54E /* MobileNetV2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MobileNetV2.m; sourceTree = "<group>"; };
+		07B96CD82EE54D4400D7A54E /* ImageClassificationUITests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ImageClassificationUITests-Bridging-Header.h"; sourceTree = "<group>"; };
+		07B96CDA2EE5500500D7A54E /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -72,6 +84,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07B96CDB2EE5500500D7A54E /* CoreVideo.framework in Frameworks */,
+				07B96CD42EE54C7D00D7A54E /* AVFoundation.framework in Frameworks */,
+				07B96CCF2EE54C5B00D7A54E /* Vision.framework in Frameworks */,
 				07B96CB72EE53EE200D7A54E /* CoreML.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -96,12 +111,15 @@
 		07B96C762EE53D1400D7A54E = {
 			isa = PBXGroup;
 			children = (
+				07B96CD52EE54D3800D7A54E /* MobileNetV2.h */,
+				07B96CD62EE54D3800D7A54E /* MobileNetV2.m */,
 				07B96CB32EE53DDB00D7A54E /* MobileNetV2.mlmodel */,
 				07B96C812EE53D1400D7A54E /* ImageClassification */,
 				07B96C982EE53D1500D7A54E /* ImageClassificationTests */,
 				07B96CA22EE53D1500D7A54E /* ImageClassificationUITests */,
 				07B96CB52EE53EE200D7A54E /* Frameworks */,
 				07B96C802EE53D1400D7A54E /* Products */,
+				07B96CD82EE54D4400D7A54E /* ImageClassificationUITests-Bridging-Header.h */,
 			);
 			sourceTree = "<group>";
 		};
@@ -118,6 +136,9 @@
 		07B96CB52EE53EE200D7A54E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				07B96CDA2EE5500500D7A54E /* CoreVideo.framework */,
+				07B96CD32EE54C7D00D7A54E /* AVFoundation.framework */,
+				07B96CCE2EE54C5B00D7A54E /* Vision.framework */,
 				07B96CB62EE53EE200D7A54E /* CoreML.framework */,
 			);
 			name = Frameworks;
@@ -213,6 +234,7 @@
 					};
 					07B96C9E2EE53D1500D7A54E = {
 						CreatedOnToolsVersion = 26.0.1;
+						LastSwiftMigration = 2600;
 						TestTargetID = 07B96C7E2EE53D1400D7A54E;
 					};
 				};
@@ -243,6 +265,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07B96CDD2EE5513E00D7A54E /* MobileNetV2.mlmodel in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,6 +290,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07B96CDC2EE5509800D7A54E /* MobileNetV2.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,6 +306,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				07B96CB42EE53DDB00D7A54E /* MobileNetV2.mlmodel in Sources */,
+				07B96CD72EE54D3800D7A54E /* MobileNetV2.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,6 +450,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ImageClassification/ImageClassification-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -482,6 +508,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OBJC_BRIDGING_HEADER = "ImageClassification/ImageClassification-Bridging-Header.h";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -533,6 +560,7 @@
 		07B96CB12EE53D1500D7A54E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2388T78D4V;
@@ -543,6 +571,8 @@
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "ImageClassificationUITests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -553,6 +583,7 @@
 		07B96CB22EE53D1500D7A54E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2388T78D4V;
@@ -563,6 +594,7 @@
 				STRING_CATALOG_GENERATE_SYMBOLS = NO;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "ImageClassificationUITests-Bridging-Header.h";
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
