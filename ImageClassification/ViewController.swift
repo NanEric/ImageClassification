@@ -10,6 +10,20 @@ import CoreML
 import Vision
 import AVFoundation
 
+//1.创建或获取机器学习模型：你可以使用各种机器学习框架（如 TensorFlow、PyTorch 等）来训练和创建你的模型。确保将模型保存为 Core ML 支持的格式（如.mlmodel）。
+//
+//2.将模型添加到项目中：将你的模型文件添加到 iOS 项目的资产目录中。
+//
+//3.导入 Core ML 框架：在你的项目中，确保已经导入了 Core ML 框架。
+//
+//4.加载模型：在你的应用代码中，使用MLModel类来加载你的模型。
+//
+//5.准备输入数据：根据你的模型的要求，准备适当的输入数据。这可能涉及将图像、数组或其他数据转换为模型可以接受的格式。
+//
+//6.进行预测：使用模型的prediction方法来进行预测，并获取预测结果。
+//
+//7.处理预测结果：根据你的应用需求，对预测结果进行处理和展示。
+
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     // 声明 MobileNetV2 模型实例
@@ -97,6 +111,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         do {
             // 使用默认配置初始化模型
             let configuration = MLModelConfiguration()
+            configuration.computeUnits = .cpuAndGPU
             if let modelURL = MobileNetV2.urlOfModelInThisBundle() {
                 model = try MobileNetV2(contentsOf: modelURL, configuration: configuration)
                 print("MobileNetV2 模型初始化成功")
