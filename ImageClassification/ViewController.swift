@@ -196,28 +196,74 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     private func classify(image: CVPixelBuffer) {
         guard let model = model else {
             print("模型未初始化")
+            DispatchQueue.main.async { [weak self] in
+                self?.resultLabel.text = "错误：模型未初始化"
+            }
             return
         }
         
-        do {
-            let input = try MobileNetV2Input(image: image)
-            let prediction = try model.prediction(fromFeatures: input)
-            
-            // 获取预测结果
-            let featureValue = prediction.featureValue(for: "classLabel")?.stringValue ?? "未知"
-            let probs = prediction.featureValue(for: "classLabelProbs")?.dictionaryValue as? [String: Double] ?? [:]
-            let confidence = probs[featureValue] ?? 0.0
-            
-            // 在主线程更新UI
-            DispatchQueue.main.async { [weak self] in
-                self?.resultLabel.text = "预测结果: \(featureValue)\n置信度: \(String(format: "%.2f", confidence * 100))%"
+        // 显示加载指示器
+        let activityIndicator = UIActivityIndicatorView(style: .large)
+        activityIndicator.center = view.center
+        activityIndicator.startAnimating()
+        view.addSubview(activityIndicator)
+        
+        // 在后台线程执行预测
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            defer {
+                // 确保在主线程移除加载指示器
+                DispatchQueue.main.async {
+                    activityIndicator.removeFromSuperview()
+                }
             }
-            print("预测结果: \(featureValue), 置信度: \(confidence)")
             
-        } catch {
-            print("预测时出错: \(error.localizedDescription)")
-            DispatchQueue.main.async { [weak self] in
-                self?.resultLabel.text = "预测时出错: \(error.localizedDescription)"
+            do {
+                // 1. 创建模型输入
+                let input = try MobileNetV2Input(image: image)
+                
+                // 2. 执行预测
+                let startTime = CACurrentMediaTime()
+                let prediction = try model.prediction(fromFeatures: input)
+                let inferenceTime = CACurrentMediaTime() - startTime
+                
+                // 3. 处理预测结果
+                guard let classLabel = prediction.featureValue(for: "classLabel")?.stringValue,
+                      let probabilities = prediction.featureValue(for: "classLabelProbs")?.dictionaryValue as? [String: Double] else {
+                    throw NSError(domain: "com.imageclassification", code: 1, 
+                                userInfo: [NSLocalizedDescriptionKey: "无法获取预测结果"])
+                }
+                
+                // 4. 获取前3个最可能的预测结果
+                let topPredictions = probabilities
+                    .sorted { $0.value > $1.value }
+                    .prefix(3)
+                    .map { (label, prob) -> (String, Double) in
+                        // 将标签转换为更易读的格式
+                        let readableLabel = label.replacingOccurrences(of: "_", with: " ").capitalized
+                        return (readableLabel, prob)
+                    }
+                
+                // 5. 在主线程更新UI
+                DispatchQueue.main.async {
+                    var resultText = "预测结果：\n"
+                    for (index, prediction) in topPredictions.enumerated() {
+                        resultText += "\(index + 1). \(prediction.0): \(String(format: "%.1f", prediction.1 * 100))%\n"
+                    }
+                    resultText += String(format: "\n处理时间: %.2f秒", inferenceTime)
+                    
+                    self?.resultLabel.text = resultText
+                    self?.resultLabel.textAlignment = .left
+                    self?.resultLabel.numberOfLines = 0
+                }
+                
+                print("预测完成，耗时: \(String(format: "%.2f", inferenceTime))秒")
+                
+            } catch {
+                print("预测时出错: \(error.localizedDescription)")
+                DispatchQueue.main.async {
+                    self?.resultLabel.text = "预测时出错: \(error.localizedDescription)"
+                    self?.resultLabel.textAlignment = .center
+                }
             }
         }
     }
